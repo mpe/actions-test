@@ -24,10 +24,10 @@ else
 fi
 cmd+="-e CROSS_COMPILE=$cross "
 
-mkdir -p $HOME/output
-cmd+="-v $HOME/output:/output:rw "
+mkdir -p $GITHUB_WORKSPACE/output
+cmd+="-v $GITHUB_WORKSPACE/output:/output:rw "
 
-user=$(stat -c "%u:%g" $HOME/output)
+user=$(stat -c "%u:%g" $GITHUB_WORKSPACE/output)
 cmd+="-u $user "
 
 if [[ -n "$TARGETS" ]]; then
@@ -46,7 +46,7 @@ cmd+="/bin/container-build.sh $TARGET"
 rc=$?
 
 if [[ -n "$SPARSE" ]]; then
-    cat $HOME/output/sparse.log
+    cat $GITHUB_WORKSPACE/output/sparse.log
 fi
 
 exit $rc
