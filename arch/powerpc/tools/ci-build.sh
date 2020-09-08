@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ -z "$TRAVIS_BUILD_DIR" || -z "$TARGET" || -z "$IMAGE" || -z "$SUBARCH" ]]; then
+if [[ -z "$GITHUB_WORKSPACE" || -z "$TARGET" || -z "$IMAGE" || -z "$SUBARCH" ]]; then
     echo "Error: required environment variables not set!"
     exit 1
 fi
@@ -8,7 +8,7 @@ fi
 cmd="docker run --rm "
 cmd+="--network none "
 cmd+="-w /linux "
-cmd+="-v $TRAVIS_BUILD_DIR:/linux:ro "
+cmd+="-v $GITHUB_WORKSPACE/linux:/linux:ro "
 
 cmd+="-e ARCH "
 cmd+="-e DEFCONFIG=$DEFCONFIG "

@@ -18,6 +18,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        path: 'linux'
+
     - name: setup ccache
       run: mkdir -p $HOME/.ccache
     - name: build
