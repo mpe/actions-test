@@ -21,7 +21,5 @@ jobs:
       with:
         path: 'linux'
 
-    - name: setup ccache
-      run: mkdir -p $HOME/.ccache
     - name: build
       run: ./arch/powerpc/tools/ci-build.sh
