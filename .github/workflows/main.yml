@@ -22,4 +22,4 @@ jobs:
         path: 'linux'
 
     - name: build
-      run: ./arch/powerpc/tools/ci-build.sh
+      run: ./linux/arch/powerpc/tools/ci-build.sh
