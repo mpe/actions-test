@@ -6,16 +6,28 @@ name: CI
 on:
   workflow_dispatch:
 
+env:
+  ARCH: powerpc
+
 jobs:
-  build:
+  kernel:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        defconfig: [ppc64_defconfig, corenet64_smp_defconfig, pmac32_defconfig, ppc40x_defconfig, ppc44x_defconfig, mpc885_ads_defconfig, corenet32_smp_defconfig]
+        image: [ubuntu-20.04, fedora-32, korg-4.9.4]
+        subarch: [ppc64]
+        include:
+          - subarch: ppc64le
+            defconfig: ppc64le_defconfig
+            image: [ubuntu-20.04, fedora-32, korg-4.9.4]
+
     env:
-      ARCH: powerpc
       TARGET: kernel
-      SUBARCH: ppc64le
-      IMAGE: ubuntu-20.04
-      DEFCONFIG: ppc64le_defconfig
+      SUBARCH: ${{ matrix.subarch }}
+      IMAGE: ${{ matrix.image }}
+      DEFCONFIG: ${{ matrix.defconfig }}
 
     steps:
     - uses: actions/checkout@v2
