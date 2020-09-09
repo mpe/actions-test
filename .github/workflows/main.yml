@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      ARCH: powerpc
       TARGET: kernel
       SUBARCH: ppc64le
       IMAGE: ubuntu-20.04
