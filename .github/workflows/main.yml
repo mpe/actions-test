@@ -21,7 +21,13 @@ jobs:
         include:
           - subarch: ppc64le
             defconfig: ppc64le_defconfig
-            image: [ubuntu-20.04, fedora-32, korg-4.9.4]
+            image: ubuntu-20.04
+          - subarch: ppc64le
+            defconfig: ppc64le_defconfig
+            image: korg-4.9.4
+          - subarch: ppc64le
+            defconfig: ppc64le_defconfig
+            image: fedora-32
 
     env:
       TARGET: kernel
