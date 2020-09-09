@@ -13,6 +13,8 @@ jobs:
     container:
       image: linuxppc/build:ubuntu-20.04-x86_64
       options: --user 1001
+      volumes:
+        - /home/runner/work/_temp:/output
 
     steps:
     - uses: actions/checkout@v2
