@@ -12,6 +12,8 @@ jobs:
 
     container:
       image: linuxppc/build:ubuntu-20.04-x86_64
+      volumes:
+        - $GITHUB_WORKSPACE/linux:/linux
 
     steps:
     - uses: actions/checkout@v2
@@ -20,7 +22,7 @@ jobs:
 
     - name: build
       run: |
-        cd $GITHUB_WORKSPACE/linux
+        cd /linux
         export ARCH=powerpc
         export DEFCONFIG=ppc64le_defconfig
         export JFACTOR=$(nproc)
