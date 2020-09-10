@@ -22,15 +22,54 @@ jobs:
       SUBARCH: ${{ matrix.subarch }}
       IMAGE: ${{ matrix.image }}
       DEFCONFIG: ${{ matrix.defconfig }}
+      MODULES: 1
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
       with:
         path: 'linux'
 
-    - name: build
+    - name: Build
       run: ./linux/arch/powerpc/tools/ci-build.sh
 
     - name: ls output
       run: ls -l output
 
+    - name: Archive vmlinux
+      uses: actions/upload-artifact@v2
+      with:
+        name: vmlinux
+        path: output/vmlinux
+
+    - name: Archive config
+      uses: actions/upload-artifact@v2
+      with:
+        name: config
+        path: output/.config
+
+    - name: Archive System.map
+      uses: actions/upload-artifact@v2
+      with:
+        name: System.map
+        path: output/System.map
+
+    - name: Archive modules
+      uses: actions/upload-artifact@v2
+      with:
+        name: modules.tar.bz2
+        path: output/modules.tar.bz2
+
+    - name: Archive zImage
+      uses: actions/upload-artifact@v2
+      with:
+        name: zImage
+        path: output/arch/powerpc/boot/zImage
+        if-no-files-found: ignore
+
+    - name: Archive uImage
+      uses: actions/upload-artifact@v2
+      with:
+        name: uImage
+        path: output/arch/powerpc/boot/uImage
+        if-no-files-found: ignore
