@@ -11,11 +11,14 @@ cmd+="-w /linux "
 cmd+="-v $GITHUB_WORKSPACE/linux:/linux:ro "
 
 cmd+="-e ARCH "
-cmd+="-e DEFCONFIG=$DEFCONFIG "
 cmd+="-e JFACTOR=$(nproc) "
 cmd+="-e KBUILD_BUILD_TIMESTAMP=$(date +%Y-%m-%d) "
 cmd+="-e CLANG "
 cmd+="-e SPARSE "
+
+if [[ -n "$DEFCONFIG" ]]; then
+    cmd+="-e DEFCONFIG=${DEFCONFIG}_defconfig "
+fi
 
 if [[ "$SUBARCH" == "ppc64" ]]; then
     cross="powerpc-linux-gnu-"

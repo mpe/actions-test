@@ -15,18 +15,18 @@ jobs:
 
     strategy:
       matrix:
-        defconfig: [ppc64_defconfig, corenet64_smp_defconfig, pmac32_defconfig, ppc40x_defconfig, ppc44x_defconfig, mpc885_ads_defconfig, corenet32_smp_defconfig]
+        defconfig: [ppc64, corenet64_smp, pmac32, ppc40x, ppc44x, mpc885_ads, corenet32_smp]
         image: [ubuntu-20.04, fedora-32, korg-4.9.4]
         subarch: [ppc64]
         include:
           - subarch: ppc64le
-            defconfig: ppc64le_defconfig
+            defconfig: ppc64le
             image: ubuntu-20.04
           - subarch: ppc64le
-            defconfig: ppc64le_defconfig
+            defconfig: ppc64le
             image: korg-5.5.0
           - subarch: ppc64le
-            defconfig: ppc64le_defconfig
+            defconfig: ppc64le
             image: fedora-32
 
     env:
