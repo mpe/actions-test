@@ -1,0 +1,36 @@
+# This is a basic workflow to help you get started with Actions
+name: Test
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  workflow_dispatch:
+
+jobs:
+  kernel:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        defconfig: [ppc64]
+        image: [ubuntu-20.04]
+        subarch: [ppc64]
+
+    env:
+      ARCH: powerpc
+      TARGET: kernel
+      SUBARCH: ${{ matrix.subarch }}
+      IMAGE: ${{ matrix.image }}
+      DEFCONFIG: ${{ matrix.defconfig }}
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        path: 'linux'
+
+    - name: build
+      run: ./linux/arch/powerpc/tools/ci-build.sh
+
+    - name: ls output
+      run: ls -l output
+
