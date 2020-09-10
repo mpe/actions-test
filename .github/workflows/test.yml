@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        defconfig: [ppc64]
+        defconfig: [ppc40x]
         image: [ubuntu-20.04]
         subarch: [ppc64]
 
