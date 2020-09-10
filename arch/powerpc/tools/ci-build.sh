@@ -16,6 +16,10 @@ cmd+="-e KBUILD_BUILD_TIMESTAMP=$(date +%Y-%m-%d) "
 cmd+="-e CLANG "
 cmd+="-e SPARSE "
 
+if [[ -n "$MODULES" ]]; then
+    cmd+="-e MODULES=$MODULES "
+fi
+
 if [[ -n "$DEFCONFIG" ]]; then
     cmd+="-e DEFCONFIG=${DEFCONFIG}_defconfig "
 fi
