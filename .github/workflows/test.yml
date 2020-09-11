@@ -37,44 +37,14 @@ jobs:
     - name: Build
       run: ./linux/arch/powerpc/tools/ci-build.sh
 
-    - name: Archive vmlinux
+    - name: Archive artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: ${{ matrix.defconfig }}-${{ matrix.image }}-vmlinux
-        path: output/vmlinux
-
-    - name: Archive config
-      uses: actions/upload-artifact@v2
-      with:
-        name: ${{ matrix.defconfig }}-${{ matrix.image }}-config
-        path: output/.config
-
-    - name: Archive System.map
-      uses: actions/upload-artifact@v2
-      with:
-        name: ${{ matrix.defconfig }}-${{ matrix.image }}-System.map
-        path: output/System.map
-
-    - name: Archive modules
-      uses: actions/upload-artifact@v2
-      with:
-        name: ${{ matrix.defconfig }}-${{ matrix.image }}-modules.tar.bz2
-        path: output/modules.tar.bz2
-        if-no-files-found: ignore
-        # Not all builds produce modules
-
-    - name: Archive zImage
-      uses: actions/upload-artifact@v2
-      with:
-        name: ${{ matrix.defconfig }}-${{ matrix.image }}-zImage
-        path: output/arch/powerpc/boot/zImage
-        if-no-files-found: ignore
-        # Not all builds produce zImage
-
-    - name: Archive uImage
-      uses: actions/upload-artifact@v2
-      with:
-        name: ${{ matrix.defconfig }}-${{ matrix.image }}-uImage
-        path: output/arch/powerpc/boot/uImage
-        if-no-files-found: ignore
-        # Not all builds produce uImage
+        name: ${{ matrix.defconfig }}-${{ matrix.image }}
+        path: |
+          output/vmlinux
+          output/.config
+          output/System.map
+          output/modules.tar.bz2
+          output/arch/powerpc/boot/zImage
+          output/arch/powerpc/boot/uImage
