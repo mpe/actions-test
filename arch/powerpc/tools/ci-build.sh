@@ -41,6 +41,10 @@ if [[ -n "$TARGETS" ]]; then
     cmd+="-e TARGETS=$TARGETS "
 fi
 
+if [[ -n "$INSTALL" ]]; then
+    cmd+="-e INSTALL=$INSTALL "
+fi
+
 if [[ "$TARGET" == "kernel" ]]; then
     cmd+="-e QUIET=1 "
 fi
