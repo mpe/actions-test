@@ -51,6 +51,9 @@ jobs:
       with:
         path: 'linux'
 
+    - name: Register gcc problem matcher
+      run: echo "::add-matcher::.github/problem-matchers/gcc.json"
+
     - name: build
       run: ./linux/arch/powerpc/tools/ci-build.sh
 
