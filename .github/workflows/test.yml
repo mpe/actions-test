@@ -5,10 +5,20 @@ on:
   # This allows the build to be triggered manually via the github UI.
   workflow_dispatch:
 
-  # This triggers the build on a push to any branch named ci/powerpc/<something>
   push:
+    # This triggers the build on a push to any branch named ci/powerpc/<something>
     branches:
     - 'ci/powerpc/**'
+    # As long as one of these paths matches
+    paths:
+      - '!tools/**'		   	# ignore tools
+      - 'tools/testing/selftests/**'	# but not selftests
+      - '!Documentation/**'		# ignore Documentation
+      - 'Documentation/powerpc/**'	# but not ours
+      - '!arch/**'			# ignore arch changes
+      - 'arch/powerpc/**'		# but not ours
+      - 'arch/Kconfig'			# or common bits
+      - '**'				# anything else triggers a build
 
 jobs:
   kernel:
