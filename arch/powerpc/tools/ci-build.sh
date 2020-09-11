@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ -z "$GITHUB_WORKSPACE" || -z "$TARGET" || -z "$IMAGE" || -z "$SUBARCH" ]]; then
+if [[ -z "$TARGET" || -z "$IMAGE" || -z "$SUBARCH" ]]; then
     echo "Error: required environment variables not set!"
     exit 1
 fi
@@ -8,7 +8,9 @@ fi
 cmd="docker run --rm "
 cmd+="--network none "
 cmd+="-w /linux "
-cmd+="-v $GITHUB_WORKSPACE/linux:/linux:ro "
+
+linux_dir=$(realpath $(dirname $0))/../../../
+cmd+="-v $linux_dir:/linux:ro "
 
 cmd+="-e ARCH "
 cmd+="-e JFACTOR=$(nproc) "
