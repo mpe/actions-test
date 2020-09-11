@@ -48,4 +48,4 @@ jobs:
       with:
         name: ${{ matrix.subarch }}-${{ matrix.image }}
         path: |
-          output/install
+          ~/output/install

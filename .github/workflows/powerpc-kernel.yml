@@ -62,9 +62,9 @@ jobs:
       with:
         name: ${{ matrix.defconfig }}-${{ matrix.image }}
         path: |
-          output/vmlinux
-          output/.config
-          output/System.map
-          output/modules.tar.bz2
-          output/arch/powerpc/boot/zImage
-          output/arch/powerpc/boot/uImage
+          ~/output/vmlinux
+          ~/output/.config
+          ~/output/System.map
+          ~/output/modules.tar.bz2
+          ~/output/arch/powerpc/boot/zImage
+          ~/output/arch/powerpc/boot/uImage
