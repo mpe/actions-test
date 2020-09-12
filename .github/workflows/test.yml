@@ -21,22 +21,22 @@ on:
       - '**'				# anything else triggers a build
 
 jobs:
-  kernel:
+  sparse:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        defconfig: [ppc40x]
+        defconfig: [ppc64]
         image: [ubuntu-20.04]
         subarch: [ppc64]
 
     env:
       ARCH: powerpc
       TARGET: kernel
+      SPARSE: 1
       SUBARCH: ${{ matrix.subarch }}
       IMAGE: ${{ matrix.image }}
       DEFCONFIG: ${{ matrix.defconfig }}
-      MODULES: 1
 
     steps:
     - name: Checkout
@@ -48,8 +48,9 @@ jobs:
     - name: Archive artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: ${{ matrix.defconfig }}-${{ matrix.image }}
+        name: sparse-${{ matrix.defconfig }}-${{ matrix.image }}
         path: |
+          ~/output/sparse.log
           ~/output/vmlinux
           ~/output/.config
           ~/output/System.map
