@@ -45,6 +45,9 @@ jobs:
     - name: Build
       run: ./arch/powerpc/tools/ci-build.sh
 
+    - name: Show sparse errors
+      run: grep /linux/arch/powerpc ~/output/sparse.log
+
     - name: Archive artifacts
       uses: actions/upload-artifact@v2
       with:
