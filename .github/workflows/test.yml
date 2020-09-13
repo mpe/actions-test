@@ -48,12 +48,6 @@ jobs:
     - name: Archive artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: sparse-${{ matrix.defconfig }}-${{ matrix.image }}
+        name: sparse-${{ matrix.defconfig }}-${{ matrix.image }}.log
         path: |
           ~/output/sparse.log
-          ~/output/vmlinux
-          ~/output/.config
-          ~/output/System.map
-          ~/output/modules.tar.bz2
-          ~/output/arch/powerpc/boot/zImage
-          ~/output/arch/powerpc/boot/uImage
