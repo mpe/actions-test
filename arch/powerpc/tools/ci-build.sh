@@ -62,4 +62,8 @@ cmd+="/bin/container-build.sh $TARGET"
 
 rc=$?
 
+if [[ -n "$SPARSE" ]]; then
+    cat $HOME/output/sparse.log
+fi
+
 exit $rc
