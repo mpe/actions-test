@@ -24,6 +24,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
         defconfig: [ppc64, ppc44x, ppc40x, pmac32, mpc885_ads, corenet64_smp, corenet32_smp]
         image: [ubuntu-20.04]
