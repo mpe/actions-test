@@ -23,7 +23,11 @@ if [[ -n "$MODULES" ]]; then
 fi
 
 if [[ -n "$DEFCONFIG" ]]; then
-    cmd+="-e DEFCONFIG=${DEFCONFIG}_defconfig "
+    if [[ $DEFCONFIG != *config ]]; then
+	DEFCONFIG=${DEFCONFIG}_defconfig
+    fi
+
+    cmd+="-e DEFCONFIG=${DEFCONFIG} "
 fi
 
 if [[ "$SUBARCH" == "ppc64" ]]; then
