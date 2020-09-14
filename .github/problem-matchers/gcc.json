@@ -5,7 +5,7 @@
             "owner": "gcc-problem-matcher",
             "pattern": [
                 {
-                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(?:fatal\\s+)?(warning|error):\\s+(.*)$",
+                    "regexp": "^(?:/linux/)?(.*):(\\d+):(\\d+):\\s+(?:fatal\\s+)?(warning|error):\\s+(.*)$",
                     "file": 1,
                     "line": 2,
                     "column": 3,
