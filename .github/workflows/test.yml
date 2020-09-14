@@ -25,12 +25,11 @@ jobs:
 
     strategy:
       matrix:
-        defconfig: [ppc64le]
-        image: [ubuntu-20.04]
-        subarch: [ppc64le]
+        defconfig: [ppc40x]
+        image: [korg-4.9.4]
+        subarch: [ppc64]
 
     env:
-      CLANG: 1
       ARCH: powerpc
       TARGET: kernel
       SUBARCH: ${{ matrix.subarch }}
