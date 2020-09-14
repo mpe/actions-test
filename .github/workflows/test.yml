@@ -25,11 +25,12 @@ jobs:
 
     strategy:
       matrix:
-        defconfig: [ppc64le_allmodconfig, ppc64le]
+        defconfig: [ppc64le]
         image: [ubuntu-20.04]
         subarch: [ppc64le]
 
     env:
+      CLANG: 1
       ARCH: powerpc
       TARGET: kernel
       SUBARCH: ${{ matrix.subarch }}
