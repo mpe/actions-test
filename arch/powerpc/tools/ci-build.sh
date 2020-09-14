@@ -43,6 +43,12 @@ cmd+="-v $HOME/output:/output:rw "
 user=$(stat -c "%u:%g" $HOME/output)
 cmd+="-u $user "
 
+if [[ -n "$CCACHE" ]]; then
+    cmd+="-v $HOME/.ccache:/ccache:rw "
+    cmd+="-e CCACHE_DIR=/ccache "
+    cmd+="-e CCACHE=1 "
+fi
+
 if [[ -n "$TARGETS" ]]; then
     cmd+="-e TARGETS=$TARGETS "
 fi
