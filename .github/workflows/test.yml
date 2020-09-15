@@ -8,7 +8,7 @@ on:
   push:
     # This triggers the build on a push to any branch named ci/powerpc/<something>-full
     branches:
-    - 'ci/powerpc/**-full'
+    - 'ci/powerpc/*-full'
     # As long as one of these paths matches
     paths:
       - '!tools/**'		   	# ignore tools
