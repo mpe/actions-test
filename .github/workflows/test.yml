@@ -26,8 +26,13 @@ jobs:
     strategy:
       matrix:
         defconfig: [ppc40x]
-        image: [korg-4.9.4]
+        image: [ubuntu-20.04]
         subarch: [ppc64]
+        include:
+          - subarch: ppc64le
+            defconfig: ppc64le_allmodconfig
+            image: ubuntu-20.04
+            if: github.ref == refs/heads/ci/powerpc/full-test
 
     env:
       ARCH: powerpc
