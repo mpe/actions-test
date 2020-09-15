@@ -25,7 +25,7 @@ jobs:
 
     strategy:
       matrix:
-        defconfig: [ppc64_allmodconfig, ppc32_allmodconfig, ppc64_book3e_allmodconfig]
+        defconfig: [allmodconfig, ppc32_allmodconfig, ppc64_book3e_allmodconfig]
         image: [fedora-32]
         subarch: [ppc64]
         include:
