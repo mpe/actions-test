@@ -6,9 +6,9 @@ on:
   workflow_dispatch:
 
   push:
-    # This triggers the build on a push to any branch named ci/powerpc/<something>
+    # This triggers the build on a push to any branch named ci/powerpc/<something>-full
     branches:
-    - 'ci/powerpc/**'
+    - 'ci/powerpc/**-full'
     # As long as one of these paths matches
     paths:
       - '!tools/**'		   	# ignore tools
@@ -25,14 +25,13 @@ jobs:
 
     strategy:
       matrix:
-        defconfig: [ppc40x]
-        image: [ubuntu-20.04]
+        defconfig: [ppc64_allmodconfig, ppc32_allmodconfig, ppc64_book3e_allmodconfig]
+        image: [fedora-32]
         subarch: [ppc64]
         include:
           - subarch: ppc64le
             defconfig: ppc64le_allmodconfig
-            image: ubuntu-20.04
-            if: github.ref == refs/heads/ci/powerpc/full-test
+            image: fedora-32
 
     env:
       ARCH: powerpc
